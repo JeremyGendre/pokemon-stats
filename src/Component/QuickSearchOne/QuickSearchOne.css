@@ -1,3 +1,12 @@
 .quick-search-container{
     margin:auto;
+    text-align: center;
+}
+.quick-search-input{
+    width:unset;
+}
+
+.results, .transition{
+    overflow-y: scroll;
+    max-height: 20em;
 }

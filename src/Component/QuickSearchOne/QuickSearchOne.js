@@ -3,6 +3,7 @@ import _ from 'lodash';
 import './QuickSearchOne.css';
 import {Search} from 'semantic-ui-react';
 import {FRENCH_POKEMON_NAMES} from "../../config/frenchPokemonNames.js";
+import RenderOnePokemon from "../RenderOnePokemon/RenderOnePokemon";
 
 const source = JSON.parse(FRENCH_POKEMON_NAMES);
 
@@ -26,19 +27,13 @@ export default class QuickSearchOne extends Component{
 
         setTimeout(() => {
             if (this.state.value.length < 1) return this.setState(initialState)
-            if(this.state.value.length >= 3){
-                const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
-                const isMatch = (result) => re.test(result.name)
-                this.setState({
-                    isLoading: false,
-                    results: _.filter(source, isMatch),
-                })
-            }else{
-                this.setState({
-                    isLoading: false,
-                    results: [],
-                })
-            }
+
+            const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
+            const isMatch = (result) => re.test(result.name)
+            this.setState({
+                isLoading: false,
+                results: _.filter(source, isMatch),
+            })
         }, 300)
     }
 
@@ -56,7 +51,9 @@ export default class QuickSearchOne extends Component{
                     placeholder="Rechercher un pokemon..."
                     size="big"
                     title="Recherche de pokemon"
+                    className="quick-search-input"
                 />
+                <RenderOnePokemon/>
             </div>
         );
     }
