@@ -12,11 +12,8 @@ export default class Header extends Component{
                     <Link to="/" className="header-nav-links">
                         Accueil
                     </Link>
-                    <Link to="/tg" className="header-nav-links">
-                        Link 1
-                    </Link>
-                    <Link to="/fbtg" className="header-nav-links">
-                        Link 2
+                    <Link to="/compare" className="header-nav-links">
+                        Comparateur
                     </Link>
                 </nav>
             </header>

@@ -1,7 +1,8 @@
 .my-header{
     width:100%;
-    background-color:#5999a7;
-    box-shadow: 0 0 10px grey;
+    background-color:#031313;
+    box-shadow: 0 0 10px #111212;
+    color:lightgrey;
 }
 .my-header nav{
     display: inline-block;
@@ -15,8 +16,8 @@
 }
 .header-nav-links{
     padding:1.5em;
-    border-bottom:solid 3px #5999a7;
-    border-top:solid 3px #5999a7;
+    border-bottom:solid 3px #031313;
+    border-top:solid 3px #031313;
     display:inline-block;
     transition: all 0.1s ease-in-out;
     text-decoration: none;
