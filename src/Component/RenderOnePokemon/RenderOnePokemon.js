@@ -1,6 +1,6 @@
 import React, {Component, Suspense} from "react";
 import './RenderOnePokemon.css';
-import {Card, Image, Loader} from "semantic-ui-react";
+import {Card, Image, Loader, Table} from "semantic-ui-react";
 import {POKEMON_TYPES} from "../../config/config";
 
 export default class RenderOnePokemon extends Component{
@@ -45,10 +45,18 @@ export default class RenderOnePokemon extends Component{
                             </Card.Content>
                             <Card.Content>
                                 <Card.Description>
-                                    Steve wants to add you to the group <strong>best friends</strong><br/>
-                                    Steve wants to add you to the group <strong>best friends</strong><br/>
-                                    Steve wants to add you to the group <strong>best friends</strong><br/>
-                                    Steve wants to add you to the group <strong>best friends</strong><br/>
+                                    <Table celled selectable>
+                                        <Table.Body>
+                                            {pokemon.stats.map(stat=>{
+                                                return (
+                                                    <Table.Row>
+                                                        <Table.Cell className="text-bold">{stat.stat.name}</Table.Cell>
+                                                        <Table.Cell>{stat.base_stat}</Table.Cell>
+                                                    </Table.Row>
+                                                );
+                                            })}
+                                        </Table.Body>
+                                    </Table>
                                 </Card.Description>
                             </Card.Content>
                         </Card>

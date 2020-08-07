@@ -19,3 +19,6 @@ body{
 .no-shadow{
     box-shadow:unset !important;
 }
+.text-bold{
+    font-weight: bold;
+}
