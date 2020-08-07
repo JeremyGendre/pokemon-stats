@@ -1,6 +1,6 @@
 .quick-search-container{
-    margin:auto;
     text-align: center;
+    margin: 2em auto auto;
 }
 .quick-search-input{
     width:unset;

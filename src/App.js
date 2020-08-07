@@ -6,6 +6,8 @@ import HomeScreen from "./Screen/HomeScreen/HomeScreen";
 import CompareScreen from "./Screen/CompareScreen/CompareScreen";
 import {Container} from 'semantic-ui-react';
 
+export const API_BASE_URL = 'https://pokeapi.co/api/v2';
+
 function App() {
   return (
       <div className="App">

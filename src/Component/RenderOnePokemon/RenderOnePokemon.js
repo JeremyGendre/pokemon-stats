@@ -1,29 +1,41 @@
-import React, {Component} from "react";
+import React, {Component, Suspense} from "react";
 import './RenderOnePokemon.css';
+import {Card, Image, Loader} from "semantic-ui-react";
 
 export default class RenderOnePokemon extends Component{
 
-    constructor(props) {
-        super(props);
-        let pokemonObject = this.props.pokemon;
-        this.state = {
-            pokemon : (pokemonObject !== undefined) ? pokemonObject : null
-        };
-    }
-
     render(){
-        const { pokemon } = this.state;
+        const { pokemon, frenchName, description } = this.props;
         return (
             <div className="render-one-pokemon-container">
-                {pokemon !== null ? (
-                    <div>
-                        {pokemon.name}
-                    </div>
-                ) : (
-                    <div>
-                        rien de rien ...
-                    </div>
-                )}
+                <Suspense fallback={<Loader />}>
+                    {pokemon !== null ? (
+                        <Card className="custom-card-container">
+                            <Card.Content>
+                                <Image
+                                    floated='right'
+                                    size='small'
+                                    src={pokemon.sprites.front_default}
+                                />
+                                <Card.Header>{frenchName}</Card.Header>
+                                <Card.Meta>{description}</Card.Meta>
+                            </Card.Content>
+                            <hr/>
+                            <Card.Content>
+                                <Card.Description>
+                                    Steve wants to add you to the group <strong>best friends</strong><br/>
+                                    Steve wants to add you to the group <strong>best friends</strong><br/>
+                                    Steve wants to add you to the group <strong>best friends</strong><br/>
+                                    Steve wants to add you to the group <strong>best friends</strong><br/>
+                                </Card.Description>
+                            </Card.Content>
+                        </Card>
+                    ) : (
+                        <div>
+
+                        </div>
+                    )}
+                </Suspense>
             </div>
         );
     }

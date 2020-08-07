@@ -1,3 +1,7 @@
 .render-one-pokemon-container{
     margin:1em;
 }
+
+.custom-card-container{
+    width:25em !important;
+}
