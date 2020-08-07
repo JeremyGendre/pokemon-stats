@@ -93,7 +93,7 @@ export default class QuickSearchOne extends Component{
                     title="Recherche de pokemon"
                     className="quick-search-input"
                 />
-                <SegmentGroup>
+                <SegmentGroup className="no-border no-shadow">
                     <Button
                         onClick={this.researchPokemon}
                         loading={this.state.isSearchButtonLoading}
