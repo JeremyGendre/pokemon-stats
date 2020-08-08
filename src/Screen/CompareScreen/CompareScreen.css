@@ -31,3 +31,11 @@
 .reset-button-container{
     margin-top:1em;
 }
+
+.custom-segment{
+    padding:0 !important;
+    background-color: unset !important;
+}
+.custom-dimmer{
+    overflow-y: unset !important;
+}
