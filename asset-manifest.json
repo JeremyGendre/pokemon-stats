@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/pokemon-stats/static/css/main.ea8a31de.chunk.css",
-    "main.js": "/pokemon-stats/static/js/main.0a18d292.chunk.js",
-    "main.js.map": "/pokemon-stats/static/js/main.0a18d292.chunk.js.map",
+    "main.css": "/pokemon-stats/static/css/main.f01e28a0.chunk.css",
+    "main.js": "/pokemon-stats/static/js/main.faf55d26.chunk.js",
+    "main.js.map": "/pokemon-stats/static/js/main.faf55d26.chunk.js.map",
     "runtime-main.js": "/pokemon-stats/static/js/runtime-main.a75f42a0.js",
     "runtime-main.js.map": "/pokemon-stats/static/js/runtime-main.a75f42a0.js.map",
     "static/css/2.2cdbc243.chunk.css": "/pokemon-stats/static/css/2.2cdbc243.chunk.css",
-    "static/js/2.05788131.chunk.js": "/pokemon-stats/static/js/2.05788131.chunk.js",
-    "static/js/2.05788131.chunk.js.map": "/pokemon-stats/static/js/2.05788131.chunk.js.map",
+    "static/js/2.0edddc7e.chunk.js": "/pokemon-stats/static/js/2.0edddc7e.chunk.js",
+    "static/js/2.0edddc7e.chunk.js.map": "/pokemon-stats/static/js/2.0edddc7e.chunk.js.map",
     "index.html": "/pokemon-stats/index.html",
-    "precache-manifest.d911ee09b3e6b6282b3fee5590cfb218.js": "/pokemon-stats/precache-manifest.d911ee09b3e6b6282b3fee5590cfb218.js",
+    "precache-manifest.e94749ceab11da9d38c037a7aa795b04.js": "/pokemon-stats/precache-manifest.e94749ceab11da9d38c037a7aa795b04.js",
     "service-worker.js": "/pokemon-stats/service-worker.js",
     "static/css/2.2cdbc243.chunk.css.map": "/pokemon-stats/static/css/2.2cdbc243.chunk.css.map",
-    "static/css/main.ea8a31de.chunk.css.map": "/pokemon-stats/static/css/main.ea8a31de.chunk.css.map",
-    "static/js/2.05788131.chunk.js.LICENSE.txt": "/pokemon-stats/static/js/2.05788131.chunk.js.LICENSE.txt",
+    "static/css/main.f01e28a0.chunk.css.map": "/pokemon-stats/static/css/main.f01e28a0.chunk.css.map",
+    "static/js/2.0edddc7e.chunk.js.LICENSE.txt": "/pokemon-stats/static/js/2.0edddc7e.chunk.js.LICENSE.txt",
     "static/media/semantic.min.css": "/pokemon-stats/static/media/outline-icons.ef60a4f6.woff"
   },
   "entrypoints": [
     "static/js/runtime-main.a75f42a0.js",
     "static/css/2.2cdbc243.chunk.css",
-    "static/js/2.05788131.chunk.js",
-    "static/css/main.ea8a31de.chunk.css",
-    "static/js/main.0a18d292.chunk.js"
+    "static/js/2.0edddc7e.chunk.js",
+    "static/css/main.f01e28a0.chunk.css",
+    "static/js/main.faf55d26.chunk.js"
   ]
 }
