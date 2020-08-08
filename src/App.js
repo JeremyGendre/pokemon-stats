@@ -15,12 +15,10 @@ function App() {
               <Header/>
               <Container>
                   <Switch>
-                      <Route exact path="/">
-                          <HomeScreen/>
-                      </Route>
-                      <Route exact path="/compare">
-                          <CompareScreen/>
-                      </Route>
+                      <Route exact path="/"><HomeScreen/></Route>
+                      <Route exact path="/pokemon-stats"><HomeScreen/></Route>
+                      <Route exact path="/pokemon-stats/"><HomeScreen/></Route>
+                      <Route exact path="/compare"><CompareScreen/></Route>
                   </Switch>
               </Container>
           </BrowserRouter>
