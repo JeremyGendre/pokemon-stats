@@ -5,3 +5,25 @@
 .compare-container h1{
     margin-bottom: 2em;
 }
+
+.compare-result-container{
+    margin-top:1em;
+}
+
+.empty-header-cell{
+    box-shadow: unset !important;
+}
+
+.custom-delete-icon{
+    color:orangered;
+    transition: all 0.15s ease-in-out;
+}
+.custom-delete-icon:hover{
+    color:red;
+    cursor: pointer;
+}
+
+.custom-tooltip{
+    overflow-y: unset !important;
+    max-height: unset !important;
+}

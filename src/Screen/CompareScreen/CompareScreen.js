@@ -1,17 +1,20 @@
 import React, {Component} from "react";
-import CompareResult from "../../Component/CompareResult/CompareResult";
 import _ from "lodash";
-import {Grid, Search} from "semantic-ui-react";
+import axios from 'axios';
+import {Grid, Icon, Popup, Search, Table} from "semantic-ui-react";
 import './CompareScreen.css';
 import {FRENCH_POKEMON_NAMES} from "../../config/config";
+import {API_BASE_URL} from "../../App";
 
 const source = JSON.parse(FRENCH_POKEMON_NAMES);
 
 const initialState = {
     isLoading: false,
-    results: [],
+    selectablePokemons: [],
     value: '',
-    pokemon: null
+    pokemon: null,
+    selectedPokemons: [],
+    lineIsBeingAdd : false
 };
 
 export default class CompareScreen extends Component{
@@ -22,7 +25,18 @@ export default class CompareScreen extends Component{
     }
 
     handleResultSelect = (e, { result }) => {
-        this.setState({ value: result.name })
+        this.setState({lineIsBeingAdd:true});
+        axios.get(API_BASE_URL+'/pokemon/'+result.id).then((data)=>{
+            let selectedPokemons = this.state.selectedPokemons;
+            let newResult = result;
+            newResult.data = data.data;
+            selectedPokemons.push(newResult);
+            this.setState({
+                value: result.name,
+                selectedPokemons : selectedPokemons,
+                lineIsBeingAdd:false
+            })
+        }).catch((e)=> {})
     }
 
     handleSearchChange = (e, { value }) => {
@@ -35,12 +49,29 @@ export default class CompareScreen extends Component{
             const isMatch = (result) => re.test(result.name)
             this.setState({
                 isLoading: false,
-                results: _.filter(source, isMatch),
+                selectablePokemons: _.filter(source, isMatch),
             })
         }, 300)
     }
 
+    handleDeleteFromList = (index)=>{
+        this.state.selectedPokemons.splice(index,1);
+        this.setState({selectedPokemons : this.state.selectedPokemons})
+    }
+
     render(){
+        let lineIsBeingAddElement = '';
+        if(this.state.lineIsBeingAdd === true){
+            lineIsBeingAddElement = (<Table.Row>
+                <Table.Cell/>
+                <Table.Cell/>
+                <Table.Cell/>
+                <Table.Cell>Récupération des données ...</Table.Cell>
+                <Table.Cell/>
+                <Table.Cell/>
+                <Table.Cell/>
+            </Table.Row>);
+        }
         return (
             <div className="compare-container">
                 <h1 className="text-center">Compare les stats !</h1>
@@ -52,15 +83,103 @@ export default class CompareScreen extends Component{
                             onSearchChange={_.debounce(this.handleSearchChange, 500, {
                                 leading: true,
                             })}
-                            results={this.state.results}
+                            results={this.state.selectablePokemons}
                             value={this.state.value}
-                            placeholder="Rechercher un pokemon..."
+                            placeholder="Ajouter un pokemon..."
                             size="large"
-                            title="Recherche de pokemon"
+                            title="Ajouter un pokemon"
                         />
                     </Grid.Column>
                     <Grid.Column mobile={16} tablet={16} computer={11}>
-                        <CompareResult/>
+                        <div className="compare-result-container">
+                            <Table definition selectable>
+                                <Table.Header>
+                                    <Table.Row>
+                                        <Table.HeaderCell className="empty-header-cell"/>
+                                        <Table.HeaderCell>HP</Table.HeaderCell>
+                                        <Table.HeaderCell>Attack</Table.HeaderCell>
+                                        <Table.HeaderCell>Defense</Table.HeaderCell>
+                                        <Table.HeaderCell>Atk-spe</Table.HeaderCell>
+                                        <Table.HeaderCell>Def-spe</Table.HeaderCell>
+                                        <Table.HeaderCell>Speed</Table.HeaderCell>
+                                        <Table.HeaderCell/>
+                                    </Table.Row>
+                                </Table.Header>
+
+
+                                    {this.state.selectedPokemons.length < 1 ? (
+                                        <Table.Body>
+                                            <Table.Row>
+                                                <Table.Cell/>
+                                                <Table.Cell/>
+                                                <Table.Cell/>
+                                                <Table.Cell/>
+                                                <Table.Cell>No Results</Table.Cell>
+                                                <Table.Cell/>
+                                                <Table.Cell/>
+                                                <Table.Cell/>
+                                            </Table.Row>
+                                            {lineIsBeingAddElement}
+                                        </Table.Body>
+                                    ) : (
+                                        <Table.Body>
+                                            {this.state.selectedPokemons.map((pokemon, index)=>{
+                                                let pokemonDataStats = pokemon.data ? (pokemon.data.stats ?? []) : [];
+                                                let pokemonStats = {
+                                                    hp:'???',
+                                                    atk:'???',
+                                                    def:'???',
+                                                    atkspe:'???',
+                                                    defspe:'???',
+                                                    vit:'???',
+                                                };
+                                                for(let i = 0; i < pokemonDataStats.length; i++){
+                                                    switch(pokemonDataStats[i].stat.name){
+                                                        case 'hp':
+                                                            pokemonStats.hp = pokemonDataStats[i].base_stat;
+                                                            break;
+                                                        case 'attack':
+                                                            pokemonStats.atk = pokemonDataStats[i].base_stat;
+                                                            break;
+                                                        case 'defense':
+                                                            pokemonStats.def = pokemonDataStats[i].base_stat;
+                                                            break;
+                                                        case 'special-attack':
+                                                            pokemonStats.atkspe = pokemonDataStats[i].base_stat;
+                                                            break;
+                                                        case 'special-defense':
+                                                            pokemonStats.defspe = pokemonDataStats[i].base_stat;
+                                                            break;
+                                                        case 'speed':
+                                                            pokemonStats.vit = pokemonDataStats[i].base_stat;
+                                                            break;
+                                                        default:
+                                                    }
+                                                }
+                                                return (
+                                                    <Table.Row key={index}>
+                                                        <Table.Cell>{pokemon.name}</Table.Cell>
+                                                        <Table.Cell>{pokemonStats.hp}</Table.Cell>
+                                                        <Table.Cell>{pokemonStats.atk}</Table.Cell>
+                                                        <Table.Cell>{pokemonStats.def}</Table.Cell>
+                                                        <Table.Cell>{pokemonStats.atkspe}</Table.Cell>
+                                                        <Table.Cell>{pokemonStats.defspe}</Table.Cell>
+                                                        <Table.Cell>{pokemonStats.vit}</Table.Cell>
+                                                        <Table.Cell>
+                                                            <Popup
+                                                                className="custom-tooltip"
+                                                                content='Supprimer de la liste'
+                                                                position="top center"
+                                                                trigger={<Icon onClick={this.handleDeleteFromList.bind(this,index)} name="delete" className="custom-delete-icon"/>} />
+                                                        </Table.Cell>
+                                                    </Table.Row>
+                                                );
+                                            })}
+                                            {lineIsBeingAddElement}
+                                        </Table.Body>
+                                    )}
+                            </Table>
+                        </div>
                     </Grid.Column>
                 </Grid>
             </div>
