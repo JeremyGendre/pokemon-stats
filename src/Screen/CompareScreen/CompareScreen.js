@@ -1,27 +1,27 @@
 import React, {Component} from "react";
 import _ from "lodash";
 import axios from 'axios';
-import {Grid, Icon, Popup, Search, Table} from "semantic-ui-react";
+import {Button, Grid, Icon, Popup, Search, Table} from "semantic-ui-react";
 import './CompareScreen.css';
 import {FRENCH_POKEMON_NAMES} from "../../config/config";
 import {API_BASE_URL} from "../../App";
 
 const source = JSON.parse(FRENCH_POKEMON_NAMES);
 
-const initialState = {
-    isLoading: false,
-    selectablePokemons: [],
-    value: '',
-    pokemon: null,
-    selectedPokemons: [],
-    lineIsBeingAdd : false
-};
 
 export default class CompareScreen extends Component{
 
+    initialState = {
+        isLoading: false,
+        selectablePokemons: [],
+        value: '',
+        selectedPokemons: [],
+        lineIsBeingAdd : false
+    };
+
     constructor(props) {
         super(props);
-        this.state = initialState;
+        this.state = this.initialState;
     }
 
     handleResultSelect = (e, { result }) => {
@@ -32,18 +32,24 @@ export default class CompareScreen extends Component{
             newResult.data = data.data;
             selectedPokemons.push(newResult);
             this.setState({
-                value: result.name,
+                value: '',
                 selectedPokemons : selectedPokemons,
                 lineIsBeingAdd:false
             })
-        }).catch((e)=> {})
+        }).catch((e)=> {
+            console.error(e);
+            this.setState({
+                value: '',
+                lineIsBeingAdd:false
+            })
+        })
     }
 
     handleSearchChange = (e, { value }) => {
         this.setState({ isLoading: true, value })
 
         setTimeout(() => {
-            if (this.state.value.length < 1) return this.setState(initialState)
+            if (this.state.value.length < 1) return this.setState({isLoading: false, selectablePokemons: [], value: '', lineIsBeingAdd : false})
 
             const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
             const isMatch = (result) => re.test(result.name)
@@ -59,8 +65,18 @@ export default class CompareScreen extends Component{
         this.setState({selectedPokemons : this.state.selectedPokemons})
     }
 
+    handleResetClick = (e) => {
+        this.setState({
+            isLoading: false,
+            selectablePokemons: [],
+            value: '',
+            selectedPokemons: [],
+            lineIsBeingAdd : false
+        });
+    }
+
     render(){
-        let lineIsBeingAddElement = '';
+        let lineIsBeingAddElement = null;
         if(this.state.lineIsBeingAdd === true){
             lineIsBeingAddElement = (<Table.Row>
                 <Table.Cell/>
@@ -174,11 +190,13 @@ export default class CompareScreen extends Component{
                                                         </Table.Cell>
                                                     </Table.Row>
                                                 );
-                                            })}
-                                            {lineIsBeingAddElement}
+                                            })}{lineIsBeingAddElement}
                                         </Table.Body>
                                     )}
                             </Table>
+                        </div>
+                        <div className="reset-button-container">
+                            <Button disabled={this.state.selectedPokemons.length < 1} onClick={this.handleResetClick.bind(this)} color="orange">Réinitialiser</Button>
                         </div>
                     </Grid.Column>
                 </Grid>

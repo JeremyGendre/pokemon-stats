@@ -27,3 +27,7 @@
     overflow-y: unset !important;
     max-height: unset !important;
 }
+
+.reset-button-container{
+    margin-top:1em;
+}
