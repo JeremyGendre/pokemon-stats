@@ -5,6 +5,10 @@ import {Button, Dimmer, Grid, Icon, Loader, Popup, Search, Segment, Table} from 
 import './CompareScreen.css';
 import {FRENCH_POKEMON_NAMES} from "../../config/config";
 import {API_BASE_URL} from "../../App";
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
+const MySwal = withReactContent(Swal);
 
 const source = JSON.parse(FRENCH_POKEMON_NAMES);
 
@@ -25,25 +29,28 @@ export default class CompareScreen extends Component{
     }
 
     handleResultSelect = (e, { result }) => {
+        if(this.state.selectedPokemons.length > 5){
+            MySwal.fire({
+                icon:'warning',
+                text:'Vous avez sélectionné trop de pokémons'
+            });
+        }
         let self = this;
         self.setState({value: '',lineIsBeingAdd:true});
-        setTimeout(function(){
-            axios.get(API_BASE_URL+'/pokemon/'+result.id).then((data)=>{
-                let selectedPokemons = self.state.selectedPokemons;
-                let newResult = result;
-                newResult.data = data.data;
-                selectedPokemons.push(newResult);
-                self.setState({
-                    selectedPokemons : selectedPokemons,
-                    lineIsBeingAdd:false
-                })
-            }).catch((e)=> {
-                console.error(e);
-                self.setState({
-                    lineIsBeingAdd:false
-                })
-            })
-        },300);
+        axios.get(API_BASE_URL+'/pokemon/'+result.id).then((data)=>{
+            let selectedPokemons = self.state.selectedPokemons;
+            let newResult = result;
+            newResult.data = data.data;
+            if(_.find(selectedPokemons,newResult) !== undefined){
+                self.setState({lineIsBeingAdd:false})
+                return;
+            }
+            selectedPokemons.push(newResult);
+            self.setState({selectedPokemons : selectedPokemons, lineIsBeingAdd:false})
+        }).catch((e)=> {
+            console.error(e);
+            self.setState({lineIsBeingAdd:false})
+        })
     }
 
     handleSearchChange = (e, { value }) => {
