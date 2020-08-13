@@ -27,6 +27,10 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+To deploy on github : 
+- make sure that you did a `yarn install` so that gh-pages is installed
+- `yarn run deploy`
+
 ### `yarn eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
