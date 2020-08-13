@@ -7,6 +7,14 @@ import {FRENCH_POKEMON_NAMES} from "../../config/config";
 import {API_BASE_URL} from "../../App";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import {
+    getBestAttackPokemonFromList,
+    getBestDefensePokemonFromList,
+    getBestHpPokemonFromList,
+    getBestSpecialAttackPokemonFromList,
+    getBestSpecialDefensePokemonFromList,
+    getBestSpeedPokemonFromList, getPokemonName
+} from "../../utils/pokemonFunctions";
 
 const MySwal = withReactContent(Swal);
 
@@ -188,6 +196,16 @@ export default class CompareScreen extends Component{
                                                 </Table.Row>
                                             );
                                         })}
+                                        <Table.Row className="text-center text-bold">
+                                            <Table.Cell/>
+                                            <Table.Cell >{getPokemonName(getBestHpPokemonFromList(this.state.selectedPokemons))}</Table.Cell>
+                                            <Table.Cell>{getPokemonName(getBestAttackPokemonFromList(this.state.selectedPokemons))}</Table.Cell>
+                                            <Table.Cell>{getPokemonName(getBestDefensePokemonFromList(this.state.selectedPokemons))}</Table.Cell>
+                                            <Table.Cell>{getPokemonName(getBestSpecialAttackPokemonFromList(this.state.selectedPokemons))}</Table.Cell>
+                                            <Table.Cell>{getPokemonName(getBestSpecialDefensePokemonFromList(this.state.selectedPokemons))}</Table.Cell>
+                                            <Table.Cell>{getPokemonName(getBestSpeedPokemonFromList(this.state.selectedPokemons))}</Table.Cell>
+                                            <Table.Cell/>
+                                        </Table.Row>
                                     </Table.Body>
                                 )}
                             </Table>
