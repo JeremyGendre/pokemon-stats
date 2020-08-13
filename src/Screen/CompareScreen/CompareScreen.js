@@ -37,11 +37,12 @@ export default class CompareScreen extends Component{
     }
 
     handleResultSelect = (e, { result }) => {
-        if(this.state.selectedPokemons.length > 5){
+        if(this.state.selectedPokemons.length > 20){
             MySwal.fire({
                 icon:'warning',
-                text:'Vous avez sélectionné trop de pokémons'
+                text:'Vous comparez déjà trop de pokémons'
             });
+            return;
         }
         let self = this;
         self.setState({value: '',lineIsBeingAdd:true});
