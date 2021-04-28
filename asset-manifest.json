@@ -1,26 +1,26 @@
 {
   "files": {
     "main.css": "/pokemon-stats/static/css/main.a59390da.chunk.css",
-    "main.js": "/pokemon-stats/static/js/main.50b9efef.chunk.js",
-    "main.js.map": "/pokemon-stats/static/js/main.50b9efef.chunk.js.map",
+    "main.js": "/pokemon-stats/static/js/main.ec7d88b9.chunk.js",
+    "main.js.map": "/pokemon-stats/static/js/main.ec7d88b9.chunk.js.map",
     "runtime-main.js": "/pokemon-stats/static/js/runtime-main.a75f42a0.js",
     "runtime-main.js.map": "/pokemon-stats/static/js/runtime-main.a75f42a0.js.map",
-    "static/css/2.b2568c11.chunk.css": "/pokemon-stats/static/css/2.b2568c11.chunk.css",
-    "static/js/2.3aa62d57.chunk.js": "/pokemon-stats/static/js/2.3aa62d57.chunk.js",
-    "static/js/2.3aa62d57.chunk.js.map": "/pokemon-stats/static/js/2.3aa62d57.chunk.js.map",
+    "static/css/2.1c68f19b.chunk.css": "/pokemon-stats/static/css/2.1c68f19b.chunk.css",
+    "static/js/2.7ee4adca.chunk.js": "/pokemon-stats/static/js/2.7ee4adca.chunk.js",
+    "static/js/2.7ee4adca.chunk.js.map": "/pokemon-stats/static/js/2.7ee4adca.chunk.js.map",
     "index.html": "/pokemon-stats/index.html",
-    "precache-manifest.c2e4765027fc2e3370c9a8ab67ad1141.js": "/pokemon-stats/precache-manifest.c2e4765027fc2e3370c9a8ab67ad1141.js",
+    "precache-manifest.68db6e6e926f5ae1d8d059bad0001bcf.js": "/pokemon-stats/precache-manifest.68db6e6e926f5ae1d8d059bad0001bcf.js",
     "service-worker.js": "/pokemon-stats/service-worker.js",
-    "static/css/2.b2568c11.chunk.css.map": "/pokemon-stats/static/css/2.b2568c11.chunk.css.map",
+    "static/css/2.1c68f19b.chunk.css.map": "/pokemon-stats/static/css/2.1c68f19b.chunk.css.map",
     "static/css/main.a59390da.chunk.css.map": "/pokemon-stats/static/css/main.a59390da.chunk.css.map",
-    "static/js/2.3aa62d57.chunk.js.LICENSE.txt": "/pokemon-stats/static/js/2.3aa62d57.chunk.js.LICENSE.txt",
+    "static/js/2.7ee4adca.chunk.js.LICENSE.txt": "/pokemon-stats/static/js/2.7ee4adca.chunk.js.LICENSE.txt",
     "static/media/semantic.min.css": "/pokemon-stats/static/media/outline-icons.ef60a4f6.woff"
   },
   "entrypoints": [
     "static/js/runtime-main.a75f42a0.js",
-    "static/css/2.b2568c11.chunk.css",
-    "static/js/2.3aa62d57.chunk.js",
+    "static/css/2.1c68f19b.chunk.css",
+    "static/js/2.7ee4adca.chunk.js",
     "static/css/main.a59390da.chunk.css",
-    "static/js/main.50b9efef.chunk.js"
+    "static/js/main.ec7d88b9.chunk.js"
   ]
 }
