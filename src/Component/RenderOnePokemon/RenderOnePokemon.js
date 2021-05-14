@@ -23,7 +23,8 @@ export default class RenderOnePokemon extends Component{
                                 <Card.Meta className="text-center">{description}</Card.Meta>
                                 <div className="card-header-simple-text">
                                     <table className="card-type-table">
-                                        {pokemon.types.map(element => {
+                                        <tbody>
+                                        {pokemon.types.map((element,index) => {
                                             let bgColor = 'white';
                                             let translatedTypeName = element.type.name;
                                             for(let i = 0; i < POKEMON_TYPES.length; i++){
@@ -34,12 +35,21 @@ export default class RenderOnePokemon extends Component{
                                                 }
                                             }
                                             return (
-                                                <tr>
-                                                    <td><span className="span-types" style={{backgroundColor:bgColor}}/></td>
-                                                    <td>{translatedTypeName}</td>
+                                                <tr key={"pokemon-type-"+index}>
+                                                    <td>
+                                                        <div style={{display:'flex'}}>
+                                                            <span className="span-types" style={{backgroundColor:bgColor, margin:'auto'}}/>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div style={{display:'flex'}}>
+                                                            <div style={{margin:'auto 0.5em'}}>{translatedTypeName}</div>
+                                                        </div>
+                                                    </td>
                                                 </tr>
                                             );
                                         })}
+                                        </tbody>
                                     </table>
                                 </div>
                             </Card.Content>
@@ -47,9 +57,9 @@ export default class RenderOnePokemon extends Component{
                                 <Card.Description>
                                     <Table celled selectable>
                                         <Table.Body>
-                                            {pokemon.stats.map(stat=>{
+                                            {pokemon.stats.map((stat,index)=>{
                                                 return (
-                                                    <Table.Row>
+                                                    <Table.Row key={'pokemon-stats-' + index}>
                                                         <Table.Cell className="text-bold">{stat.stat.name}</Table.Cell>
                                                         <Table.Cell>{stat.base_stat}</Table.Cell>
                                                     </Table.Row>

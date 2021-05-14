@@ -51,6 +51,7 @@ export default class QuickSearchOne extends Component{
     }
 
     researchPokemon = (e) => {
+        e.preventDefault();
         this.setState({isSearchButtonLoading: true});
         if(this.state.pokemonId !== null){
             axios.get(API_BASE_URL+'/pokemon/'+this.state.pokemonId).then((data)=>{
@@ -80,34 +81,34 @@ export default class QuickSearchOne extends Component{
     render(){
         return (
             <div className="quick-search-container">
-                <Search
-                    loading={this.state.isLoading}
-                    onResultSelect={this.handleResultSelect}
-                    onSearchChange={_.debounce(this.handleSearchChange, 500, {
-                        leading: true,
-                    })}
-                    results={this.state.results}
-                    value={this.state.value}
-                    placeholder="Rechercher un pokemon..."
-                    size="big"
-                    title="Recherche de pokemon"
-                    className="quick-search-input"
-                />
-                <SegmentGroup className="no-border no-shadow">
-                    <Button
-                        onClick={this.researchPokemon}
-                        loading={this.state.isSearchButtonLoading}
-                        inverted
-                        disabled={this.state.pokemonId === null}>Rechercher</Button>
-                </SegmentGroup>
-                {this.state.pokemon !== null ? (
-                    <RenderOnePokemon
-                        pokemon={this.state.pokemon}
-                        frenchName={this.state.frenchName}
-                        description={this.state.description}/>
-                ) : (
-                    <></>
-                )}
+                <form onSubmit={this.researchPokemon}>
+                    <Search
+                        loading={this.state.isLoading}
+                        onResultSelect={this.handleResultSelect}
+                        onSearchChange={_.debounce(this.handleSearchChange, 500, {
+                            leading: true,
+                        })}
+                        results={this.state.results}
+                        value={this.state.value}
+                        placeholder="Rechercher un pokemon..."
+                        size="big"
+                        title="Recherche de pokemon"
+                        className="quick-search-input"
+                    />
+                    <SegmentGroup className="no-border no-shadow">
+                        <Button
+                            loading={this.state.isSearchButtonLoading}
+                            inverted
+                            disabled={this.state.pokemonId === null}
+                        >Rechercher</Button>
+                    </SegmentGroup>
+                    {this.state.pokemon !== null && (
+                        <RenderOnePokemon
+                            pokemon={this.state.pokemon}
+                            frenchName={this.state.frenchName}
+                            description={this.state.description}/>
+                    )}
+                </form>
             </div>
         );
     }
