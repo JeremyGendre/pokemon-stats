@@ -90,7 +90,9 @@ export default function QuickSearchOne(){
             <Search
                 loading={state.isLoading}
                 onResultSelect={handleResultSelect}
-                onSearchChange={handleSearchChange}
+                onSearchChange={_.debounce(handleSearchChange, 500, {
+                    leading: true,
+                })}
                 results={state.results}
                 value={state.value}
                 placeholder="Rechercher un pokemon..."
