@@ -10,7 +10,7 @@ export default class RenderOnePokemon extends Component{
         return (
             <div className="render-one-pokemon-container">
                 <Suspense fallback={<Loader />}>
-                    {pokemon !== null ? (
+                    {pokemon !== null && (
                         <Card className="custom-card-container">
                             <Card.Content className="custom-card-content">
                                 <Image
@@ -70,10 +70,6 @@ export default class RenderOnePokemon extends Component{
                                 </Card.Description>
                             </Card.Content>
                         </Card>
-                    ) : (
-                        <div>
-
-                        </div>
                     )}
                 </Suspense>
             </div>
